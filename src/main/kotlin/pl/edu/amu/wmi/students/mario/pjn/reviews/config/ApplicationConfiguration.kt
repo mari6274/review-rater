@@ -8,9 +8,9 @@ import org.springframework.web.client.RestTemplate
  * Created by Mariusz on 2016-11-27.
  */
 @Configuration
-class ApplicationConfiguration {
+open class ApplicationConfiguration {
     @Bean
-    fun restTemplate() : RestTemplate {
+    open fun restTemplate() : RestTemplate {
         return RestTemplate()
     }
 }
