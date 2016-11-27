@@ -9,8 +9,8 @@ import javax.persistence.*
 @Table(name = "reviews")
 data class Review(
         var review: String,
-        var grade: Float,
+        var grade: Short,
         @Id @GeneratedValue(strategy = GenerationType.AUTO) var id: Long = 0
 ) {
-    constructor() : this("", 0f)
+    constructor() : this("", 0)
 }
