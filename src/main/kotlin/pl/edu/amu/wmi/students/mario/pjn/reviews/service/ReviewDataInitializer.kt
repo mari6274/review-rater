@@ -11,9 +11,13 @@ import java.util.function.Consumer
 @Service
 class ReviewDataInitializer(val reviewDownloader: ReviewDownloader, val reviewRepository: ReviewRepository) {
     fun init() {
-        reviewDownloader.download(1000, Consumer {
-            println(it.reviewText?.substring(0, 80))
+        reviewDownloader.download(5, Consumer {
+            println(it.reviewText?.safeBeginning(80))
             reviewRepository.save(Review(it.reviewText ?: "", it.overallRating?.rating ?: 0))
         })
     }
+}
+
+private fun String.safeBeginning(maxEndIndex: Int): String? {
+    return substring(0, if (length < maxEndIndex)  length else maxEndIndex)
 }

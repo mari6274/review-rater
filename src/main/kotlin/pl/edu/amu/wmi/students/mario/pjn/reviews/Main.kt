@@ -4,6 +4,7 @@ import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.Bean
+import pl.edu.amu.wmi.students.mario.pjn.reviews.repository.ReviewRepository
 import pl.edu.amu.wmi.students.mario.pjn.reviews.service.ReviewDataInitializer
 
 /**
@@ -14,10 +15,17 @@ import pl.edu.amu.wmi.students.mario.pjn.reviews.service.ReviewDataInitializer
 open class Application {
 
     @Bean
-    open fun init(reviewDataInitializer: ReviewDataInitializer) = CommandLineRunner {
+    open fun init(reviewDataInitializer: ReviewDataInitializer, reviewRepository: ReviewRepository) = CommandLineRunner {
         val args = it
-        when (args[1]) {
-            "init" -> reviewDataInitializer.init()
+        if (args.isNotEmpty()) {
+            when (args[0]) {
+                "init" -> reviewDataInitializer.init()
+                "listAll" -> reviewRepository.findAll().forEach(::println)
+            }
+        } else {
+            println("Usage:")
+            println("   ./appName init")
+            println("   ./appName listAll")
         }
     }
 }

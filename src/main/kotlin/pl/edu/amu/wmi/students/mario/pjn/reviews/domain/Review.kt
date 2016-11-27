@@ -8,7 +8,7 @@ import javax.persistence.*
 @Entity
 @Table(name = "reviews")
 data class Review(
-        var review: String,
+        @Lob var review: String,
         var grade: Short,
         @Id @GeneratedValue(strategy = GenerationType.AUTO) var id: Long = 0
 ) {
