@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.Bean
 import pl.edu.amu.wmi.students.mario.pjn.reviews.repository.ReviewRepository
+import pl.edu.amu.wmi.students.mario.pjn.reviews.service.FeatureGenerator
 import pl.edu.amu.wmi.students.mario.pjn.reviews.service.ReviewDataInitializer
 
 /**
@@ -15,11 +16,12 @@ import pl.edu.amu.wmi.students.mario.pjn.reviews.service.ReviewDataInitializer
 open class Application {
 
     @Bean
-    open fun init(reviewDataInitializer: ReviewDataInitializer, reviewRepository: ReviewRepository) = CommandLineRunner {
+    open fun init(reviewDataInitializer: ReviewDataInitializer, reviewRepository: ReviewRepository, featureGenerator: FeatureGenerator) = CommandLineRunner {
         val args = it
         if (args.isNotEmpty()) {
             when (args[0]) {
                 "init" -> reviewDataInitializer.init()
+                "generateFeatures" -> featureGenerator.generate()
                 "listAll" -> reviewRepository.findAll().forEach(::println)
             }
         } else {
