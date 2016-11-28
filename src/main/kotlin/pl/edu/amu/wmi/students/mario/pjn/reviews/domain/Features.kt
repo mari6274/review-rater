@@ -12,5 +12,7 @@ data class Features(
         var topWord : String,
         @Id @GeneratedValue(strategy = GenerationType.AUTO) var id : Long = 0
 ) {
+    constructor() : this(Review(), "")
+
     fun length(): Int = review.review.length
 }
