@@ -26,7 +26,6 @@ open class Application {
         val args = it
         if (args.isNotEmpty()) {
             when (args[0]) {
-                "clearReviews" -> reviewRepository.deleteAllInBatch()
                 "downloadReviews" -> reviewDataInitializer.init()
                 "generateFeatures" -> featureGenerator.generate()
                 "generateVWLearnDataSet" -> vwDataSetGenerator.generateToLearn()
@@ -35,7 +34,6 @@ open class Application {
             }
         } else {
             println("Usage:")
-            println("   ./appName clearReviews")
             println("   ./appName downloadReviews")
             println("   ./appName generateFeatures")
             println("   ./appName generateVWLearnDataSet")

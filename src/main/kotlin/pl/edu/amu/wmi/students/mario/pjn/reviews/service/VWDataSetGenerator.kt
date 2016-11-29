@@ -13,7 +13,9 @@ class VWDataSetGenerator(val reviewRepository: ReviewRepository) {
 
         File("dataset${postfix(learnData)}.txt").printWriter().use { out ->
             reviewRepository.findByLearnData(learnData).forEach {
-                out.println("${it.grade} | len:${it.review.length} topWord:${it.features?.topWord}")
+                val len = "len:${it.review.length} "
+                val topWord = if(!it.features?.topWord.isNullOrEmpty()) "topWord:${it.features?.topWord} " else ""
+                out.println("${it.grade} | $len$topWord")
             }
         }
     }
