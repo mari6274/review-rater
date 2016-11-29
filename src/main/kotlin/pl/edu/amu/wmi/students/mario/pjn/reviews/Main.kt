@@ -26,14 +26,16 @@ open class Application {
         val args = it
         if (args.isNotEmpty()) {
             when (args[0]) {
-                "init" -> reviewDataInitializer.init()
+                "clearReviews" -> reviewRepository.deleteAllInBatch()
+                "downloadReviews" -> reviewDataInitializer.init()
                 "generateFeatures" -> featureGenerator.generate()
+                "generateVWLearnDataSet" -> vwDataSetGenerator.generateToLearn()
                 "generateVWDataSet" -> vwDataSetGenerator.generate()
                 "listAll" -> reviewRepository.findAll().forEach(::println)
             }
         } else {
             println("Usage:")
-            println("   ./appName init")
+            println("   ./appName downloadReviews")
             println("   ./appName listAll")
         }
     }
