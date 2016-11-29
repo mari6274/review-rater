@@ -35,7 +35,11 @@ open class Application {
             }
         } else {
             println("Usage:")
+            println("   ./appName clearReviews")
             println("   ./appName downloadReviews")
+            println("   ./appName generateFeatures")
+            println("   ./appName generateVWLearnDataSet")
+            println("   ./appName generateVWDataSet")
             println("   ./appName listAll")
         }
     }
