@@ -15,7 +15,7 @@ class VWDataSetGenerator(val reviewRepository: ReviewRepository) {
             reviewRepository.findByLearnData(learnData).forEach {
                 val len = "len:${it.review.length} "
                 val topWord = if(!it.features?.topWord.isNullOrEmpty()) "topWord:${it.features?.topWord} " else ""
-                out.println("${it.grade} | $len$topWord")
+                out.println("${it.grade} | $len$topWord".trim())
             }
         }
     }
