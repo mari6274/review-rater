@@ -12,8 +12,8 @@ class VWDataSetGenerator(val reviewRepository: ReviewRepository) {
     fun generate(learnData: Boolean = false) {
 
         File("dataset${postfix(learnData)}.txt").printWriter().use { out ->
-            reviewRepository.findWithLearnDataFlag(learnData).forEach {
-                out.println("${it.grade} | len:${it.review.length} topWord:${it.features.topWord}")
+            reviewRepository.findByLearnData(learnData).forEach {
+                out.println("${it.grade} | len:${it.review.length} topWord:${it.features?.topWord}")
             }
         }
     }

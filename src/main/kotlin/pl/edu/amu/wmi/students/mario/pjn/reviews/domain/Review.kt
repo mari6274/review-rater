@@ -10,9 +10,9 @@ import javax.persistence.*
 data class Review(
         @Lob var review: String,
         var grade: Short,
-        @OneToOne var features: Features,
+        @OneToOne var features: Features? = null,
         var learnData: Boolean = false,
         @Id @GeneratedValue(strategy = GenerationType.AUTO) var id: Long = 0
 ) {
-    constructor() : this("", 0, Features())
+    constructor() : this("", 0)
 }

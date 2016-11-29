@@ -8,11 +8,11 @@ import javax.persistence.*
 @Entity
 @Table(name = "features")
 data class Features(
-        @OneToOne var review : Review,
         var topWord : String,
+        @OneToOne var review : Review? = null,
         @Id @GeneratedValue(strategy = GenerationType.AUTO) var id : Long = 0
 ) {
-    constructor() : this(Review(), "")
+    constructor() : this("")
 
-    fun length(): Int = review.review.length
+    fun length(): Int? = review?.review?.length
 }
