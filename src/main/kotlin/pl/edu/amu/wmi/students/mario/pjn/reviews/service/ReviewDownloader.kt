@@ -3,8 +3,8 @@ package pl.edu.amu.wmi.students.mario.pjn.reviews.service
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
-import pl.edu.amu.wmi.students.mario.pjn.reviews.rest.domain.review.Product
-import pl.edu.amu.wmi.students.mario.pjn.reviews.rest.domain.review.Review
+import pl.edu.amu.wmi.students.mario.pjn.reviews.rest.domain.client.review.Product
+import pl.edu.amu.wmi.students.mario.pjn.reviews.rest.domain.client.review.Review
 import java.util.function.Consumer
 
 /**
