@@ -7,7 +7,8 @@ import org.springframework.context.annotation.Bean
 import pl.edu.amu.wmi.students.mario.pjn.reviews.repository.ReviewRepository
 import pl.edu.amu.wmi.students.mario.pjn.reviews.service.FeatureGenerator
 import pl.edu.amu.wmi.students.mario.pjn.reviews.service.ReviewDataInitializer
-import pl.edu.amu.wmi.students.mario.pjn.reviews.service.VWDataSetGenerator
+import pl.edu.amu.wmi.students.mario.pjn.reviews.service.vw.FullFeatureStringGenerator
+import pl.edu.amu.wmi.students.mario.pjn.reviews.service.vw.VWDataSetGenerator
 
 /**
  * Created by Mariusz on 2016-11-27.
@@ -21,15 +22,16 @@ open class Application {
             reviewDataInitializer: ReviewDataInitializer,
             reviewRepository: ReviewRepository,
             featureGenerator: FeatureGenerator,
-            vwDataSetGenerator: VWDataSetGenerator
+            vwDataSetGenerator: VWDataSetGenerator,
+            fullFeatureStringGenerator: FullFeatureStringGenerator
     ) = CommandLineRunner {
         val args = it
         if (args.isNotEmpty()) {
             when (args[0]) {
                 "downloadReviews" -> reviewDataInitializer.init()
                 "generateFeatures" -> featureGenerator.generate()
-                "generateVWLearnDataSet" -> vwDataSetGenerator.generateToLearn()
-                "generateVWDataSet" -> vwDataSetGenerator.generate()
+                "generateVWLearnDataSet" -> vwDataSetGenerator.generateToLearn{fullFeatureStringGenerator.generate(it)}
+                "generateVWDataSet" -> vwDataSetGenerator.generate({fullFeatureStringGenerator.generate(it)})
                 "listAll" -> reviewRepository.findAll().forEach(::println)
             }
         } else {
