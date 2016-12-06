@@ -1,12 +1,12 @@
 (function() {
-    angular.module('app').controller('MainController', ['PredictionsService', MainController])
+    angular.module('app').controller('PredictionsController', ['PredictionsService', PredictionsController]);
 
-    function MainController(PredictionsService) {
-        vm = this
+    function PredictionsController(PredictionsService) {
+        var vm = this;
         vm.predictions= "";
         vm.response= "";
-        vm.postPredictions = postPredictions
-        vm.calcColor = calcColor
+        vm.postPredictions = postPredictions;
+        vm.calcColor = calcColor;
 
         function postPredictions() {
             PredictionsService.postPredictions(vm.predictions)
@@ -18,7 +18,7 @@
         }
 
         function calcColor(diff) {
-            var d = Math.abs(diff.grade - diff.predictedGrade)
+            var d = Math.abs(diff.grade - diff.predictedGrade);
             if (d < 1) {
                 return "lightgreen";
             } else if (d < 2) {
@@ -30,4 +30,4 @@
             }
         }
     }
-})()
+})();

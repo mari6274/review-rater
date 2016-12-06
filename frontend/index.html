@@ -5,13 +5,29 @@
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
     <script src="predictions.service.js"></script>
-    <script src="main.controller.js"></script>
+    <script src="predictions.controller.js"></script>
+    <script src="examples.service.js"></script>
+    <script src="examples.controller.js"></script>
 <head>
-<body ng-app="app" ng-controller="MainController as vm">
+<body ng-app="app" ng-controller="PredictionsController as pc">
     <div style="display: inline-table">
-        <h3>Input: </h3>
-        <textarea cols="100" rows="20" ng-model="vm.predictions" style="display: inline-block"></textarea>
-        <button ng-click="vm.postPredictions()" style="display: block">POST</button>
+        <div>
+            <h3>Enter Predictions: </h3>
+            <textarea cols="100" rows="20" ng-model="pc.predictions" style="display: inline-block"></textarea>
+            <button ng-click="pc.postPredictions()" style="display: block">POST</button>
+        </div>
+        <div ng-controller="ExamplesController as ec">
+            <div>
+                <h3>Learn data set: </h3>
+                <textarea cols="100" rows="20" ng-model="ec.learnDataSet" style="display: inline-block"></textarea>
+                <button ng-click="ec.getLearnDataSet()" style="display: block">Load</button>
+            </div>
+            <div>
+                <h3>Data set: </h3>
+                <textarea cols="100" rows="20" ng-model="ec.dataSet" style="display: inline-block"></textarea>
+                <button ng-click="ec.getDataSet()" style="display: block">Load</button>
+            </div>
+        </div>
     </div>
     <div style="display: inline-table; margin-left: 40px">
         <h3>Response: </h3>

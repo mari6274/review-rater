@@ -1,5 +1,5 @@
 (function() {
-    angular.module('app').service('PredictionsService', ['$http', PredictionsService])
+    angular.module('app').service('PredictionsService', ['$http', PredictionsService]);
 
     function PredictionsService($http) {
         this.postPredictions = postPredictions;
@@ -16,4 +16,4 @@
             );
         }
     }
-})()
+})();
