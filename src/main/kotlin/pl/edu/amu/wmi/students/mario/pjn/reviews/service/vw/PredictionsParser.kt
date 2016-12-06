@@ -1,4 +1,4 @@
-package pl.edu.amu.wmi.students.mario.pjn.reviews.service
+package pl.edu.amu.wmi.students.mario.pjn.reviews.service.vw
 
 import org.springframework.stereotype.Service
 

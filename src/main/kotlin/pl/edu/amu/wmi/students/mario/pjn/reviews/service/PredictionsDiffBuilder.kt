@@ -5,6 +5,7 @@ import pl.edu.amu.wmi.students.mario.pjn.reviews.repository.ReviewRepository
 import pl.edu.amu.wmi.students.mario.pjn.reviews.rest.domain.server.PredictionExampleDiff
 import pl.edu.amu.wmi.students.mario.pjn.reviews.rest.domain.server.PredictionsDiff
 import pl.edu.amu.wmi.students.mario.pjn.reviews.service.math.Calculator
+import pl.edu.amu.wmi.students.mario.pjn.reviews.service.vw.PredictionsParser
 
 /**
  * Created by Mariusz on 2016-12-05.

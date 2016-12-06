@@ -8,7 +8,7 @@ import pl.edu.amu.wmi.students.mario.pjn.reviews.repository.ReviewRepository
 import pl.edu.amu.wmi.students.mario.pjn.reviews.service.FeatureGenerator
 import pl.edu.amu.wmi.students.mario.pjn.reviews.service.ReviewDataInitializer
 import pl.edu.amu.wmi.students.mario.pjn.reviews.service.vw.FullFeatureStringGenerator
-import pl.edu.amu.wmi.students.mario.pjn.reviews.service.vw.VWDataSetGenerator
+import pl.edu.amu.wmi.students.mario.pjn.reviews.service.writer.FileExamplesWriter
 
 /**
  * Created by Mariusz on 2016-11-27.
@@ -22,16 +22,16 @@ open class Application {
             reviewDataInitializer: ReviewDataInitializer,
             reviewRepository: ReviewRepository,
             featureGenerator: FeatureGenerator,
-            vwDataSetGenerator: VWDataSetGenerator,
-            fullFeatureStringGenerator: FullFeatureStringGenerator
+            fullFeatureStringGenerator: FullFeatureStringGenerator,
+            fileExamplesWriter: FileExamplesWriter
     ) = CommandLineRunner {
         val args = it
         if (args.isNotEmpty()) {
             when (args[0]) {
                 "downloadReviews" -> reviewDataInitializer.init()
                 "generateFeatures" -> featureGenerator.generate()
-                "generateVWLearnDataSet" -> vwDataSetGenerator.generateToLearn{fullFeatureStringGenerator.generate(it)}
-                "generateVWDataSet" -> vwDataSetGenerator.generate({fullFeatureStringGenerator.generate(it)})
+                "generateVWLearnDataSet" -> fileExamplesWriter.writeToFile("data_set_learn.txt", reviewRepository.findByLearnData(true))
+                "generateVWDataSet" -> fileExamplesWriter.writeToFile("data_set.txt", reviewRepository.findByLearnData(false))
                 "listAll" -> reviewRepository.findAll().forEach(::println)
             }
         } else {
