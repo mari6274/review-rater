@@ -36,11 +36,12 @@ open class Application {
             }
         } else {
             println("Usage:")
-            println("   ./appName downloadReviews")
+            println("   ./appName downloadReviews --walmart.api_key=[api_key]")
             println("   ./appName generateFeatures")
             println("   ./appName generateVWLearnDataSet")
             println("   ./appName generateVWDataSet")
             println("   ./appName listAll")
+            println("   ./appName --spring.main.web-environment=true")
         }
     }
 }
