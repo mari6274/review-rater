@@ -19,8 +19,8 @@ class ExamplesController(val reviewRepository: ReviewRepository,
 
     @CrossOrigin(origins = arrayOf("*"))
     @GetMapping(produces = arrayOf(MediaType.TEXT_PLAIN_VALUE))
-    fun getExamples(@RequestParam learn: Boolean, @RequestParam featuresParam: String): String {
-        val featuresStringGenerator = featuresStringGeneratorFactory.get(featuresParam)
+    fun getExamples(@RequestParam learn: Boolean, @RequestParam features: String): String {
+        val featuresStringGenerator = featuresStringGeneratorFactory.get(features)
         return stringExamplesWriter.write(reviewRepository.findByLearnData(learn), featuresStringGenerator)
     }
 

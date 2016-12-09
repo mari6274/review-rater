@@ -8,46 +8,52 @@
     <script src="predictions.controller.js"></script>
     <script src="examples.service.js"></script>
     <script src="examples.controller.js"></script>
-<head>
+    <head>
 <body ng-app="app" ng-controller="PredictionsController as pc">
-    <div style="display: inline-table">
+<div style="display: inline-table">
+    <div>
+        <h3>Enter Predictions: </h3>
+        <textarea cols="100" rows="20" ng-model="pc.predictions" style="display: inline-block"></textarea>
+        <button ng-click="pc.postPredictions()" style="display: block">POST</button>
+    </div>
+    <div ng-controller="ExamplesController as ec">
         <div>
-            <h3>Enter Predictions: </h3>
-            <textarea cols="100" rows="20" ng-model="pc.predictions" style="display: inline-block"></textarea>
-            <button ng-click="pc.postPredictions()" style="display: block">POST</button>
+            <h3>Learn data set: </h3>
+            <div>
+                <label ng-repeat="feature in ec.learnFeatures">
+                    {{feature.key}}
+                    <input type="checkbox" ng-model="feature.value"/>
+                </label>
+            </div>
+            <textarea cols="100" rows="20" ng-model="ec.learnDataSet" style="display: inline-block" readonly="true"></textarea>
+            <button ng-click="ec.getLearnDataSet()" style="display: block">Load</button>
         </div>
-        <div ng-controller="ExamplesController as ec">
-            <div>
-                <h3>Learn data set: </h3>
-                <textarea cols="100" rows="20" ng-model="ec.learnDataSet" style="display: inline-block"></textarea>
-                <button ng-click="ec.getLearnDataSet()" style="display: block">Load</button>
-            </div>
-            <div>
-                <h3>Data set: </h3>
-                <textarea cols="100" rows="20" ng-model="ec.dataSet" style="display: inline-block"></textarea>
-                <button ng-click="ec.getDataSet()" style="display: block">Load</button>
-            </div>
+        <div>
+            <h3>Data set: </h3>
+            <textarea cols="100" rows="20" ng-model="ec.dataSet" style="display: inline-block" readonly="true"></textarea>
+            <button ng-click="ec.getDataSet()" style="display: block">Load</button>
         </div>
     </div>
-    <div style="display: inline-table; margin-left: 40px">
-        <h3>Response: </h3>
+</div>
+<div style="display: inline-table; margin-left: 40px">
+    <h3>Response: </h3>
 
-        <h4>RMS: {{vm.response.rms}}</h4>
+    <h4>RMS: {{vm.response.rms}}</h4>
 
-        <table>
-            <thead>
-                <th>Review id.</th>
-                <th>Grade</th>
-                <th>Predicted grade</th>
-            </thead>
-            <tbody>
-                <tr ng-repeat="diff in vm.response.predictionExampleDiffs" ng-style="{'background-color': vm.calcColor(diff)}">
-                    <td>{{ diff.reviewId }}</td>
-                    <td>{{ diff.grade }}</td>
-                    <td>{{ diff.predictedGrade }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <table>
+        <thead>
+        <th>Review id.</th>
+        <th>Grade</th>
+        <th>Predicted grade</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="diff in vm.response.predictionExampleDiffs" ng-style="{'background-color': vm.calcColor(diff)}">
+            <td>{{ diff.reviewId }}</td>
+            <td>{{ diff.grade }}</td>
+            <td>{{ diff.predictedGrade }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

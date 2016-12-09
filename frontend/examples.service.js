@@ -6,8 +6,8 @@
 
         return this;
 
-        function getDataSet(learn) {
-            return $http.get('http://localhost:8080/examples?learn=' + learn);
+        function getDataSet(learn, features) {
+            return $http.get('http://localhost:8080/examples?learn=' + learn + '&features=' + features);
         }
     }
 })();
