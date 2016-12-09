@@ -30,6 +30,12 @@
         </div>
         <div>
             <h3>Data set: </h3>
+            <div>
+                <label ng-repeat="feature in ec.features">
+                    {{feature.key}}
+                    <input type="checkbox" ng-model="feature.value"/>
+                </label>
+            </div>
             <textarea cols="100" rows="20" ng-model="ec.dataSet" style="display: inline-block" readonly="true"></textarea>
             <button ng-click="ec.getDataSet()" style="display: block">Load</button>
         </div>
