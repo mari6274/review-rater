@@ -8,6 +8,7 @@ import pl.edu.amu.wmi.students.mario.pjn.reviews.service.WordNumerator
  * Created by Mariusz on 2016-11-29.
  */
 @Service
-class TopWordStringGenerator(val wordNumerator: WordNumerator) {
-    fun generate(review: Review) = if (!review.features?.topWord.isNullOrEmpty()) "topWord:${wordNumerator.getNumber(review.features?.topWord!!)} " else ""
+class TopWordFeatureStringGenerator(val wordNumerator: WordNumerator) : (Review) -> String {
+    override fun invoke(review: Review): String = if (!review.features?.topWord.isNullOrEmpty()) "topWord:${wordNumerator.getNumber(review.features?.topWord!!)} " else ""
+
 }

@@ -9,7 +9,7 @@ import pl.edu.amu.wmi.students.mario.pjn.reviews.service.vw.ExampleStringGenerat
  */
 @Service
 class StringExamplesWriter(val exampleStringGenerator: ExampleStringGenerator) {
-    fun write(reviews : List<Review>) : String {
-        return reviews.map { exampleStringGenerator.generate(it) }.joinToString("\n")
+    fun write(reviews: List<Review>, featuresStringGenerator: (Review) -> String): String {
+        return reviews.map { exampleStringGenerator.generate(it, featuresStringGenerator) }.joinToString("\n")
     }
 }

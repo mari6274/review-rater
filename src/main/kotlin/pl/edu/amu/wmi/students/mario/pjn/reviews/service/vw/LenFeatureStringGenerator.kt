@@ -7,6 +7,6 @@ import pl.edu.amu.wmi.students.mario.pjn.reviews.domain.Review
  * Created by Mariusz on 2016-11-29.
  */
 @Service
-class LenFeatureStringGenerator {
-    fun generate(review : Review) = "len:${review.review.length} "
+class LenFeatureStringGenerator : (Review) -> String {
+    override fun invoke(review: Review): String = "len:${review.review.length} "
 }
