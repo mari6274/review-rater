@@ -15,7 +15,7 @@ class PredictionsDiffBuilder(val predictionsParser: PredictionsParser, val revie
     fun build(predictions: String): PredictionsDiff {
         val examples = predictionsParser.parse(predictions)
                 .map { PredictionExampleDiff(it.key, reviewRepository.findOne(it.key).grade, it.value) }
-        val grades = examples.map { it.predictedGrade }
-        return PredictionsDiff(examples, calculator.rms(grades))
+        val gradeDiffs = examples.map { Math.abs(it.predictedGrade - it.grade) }
+        return PredictionsDiff(examples, calculator.rms(gradeDiffs))
     }
 }

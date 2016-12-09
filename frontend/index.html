@@ -44,7 +44,7 @@
 <div style="display: inline-table; margin-left: 40px">
     <h3>Response: </h3>
 
-    <h4>RMS: {{vm.response.rms}}</h4>
+    <h4>RMS: {{pc.response.rms}}</h4>
 
     <table>
         <thead>
@@ -53,7 +53,7 @@
         <th>Predicted grade</th>
         </thead>
         <tbody>
-        <tr ng-repeat="diff in vm.response.predictionExampleDiffs" ng-style="{'background-color': vm.calcColor(diff)}">
+        <tr ng-repeat="diff in pc.response.predictionExampleDiffs" ng-style="{'background-color': pc.calcColor(diff)}">
             <td>{{ diff.reviewId }}</td>
             <td>{{ diff.grade }}</td>
             <td>{{ diff.predictedGrade }}</td>
