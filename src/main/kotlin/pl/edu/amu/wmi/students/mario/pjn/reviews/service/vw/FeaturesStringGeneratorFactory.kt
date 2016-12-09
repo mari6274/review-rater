@@ -19,8 +19,8 @@ class FeaturesStringGeneratorFactory(val applicationContext: ApplicationContext)
         val featureStringGenerators = featuresParam
                 .split(",")
                 .map { featuresMap[it] }
-                .map { applicationContext.getBean(it)}
                 .filterNotNull()
+                .map { applicationContext.getBean(it)}
 
         return {
             val review = it
