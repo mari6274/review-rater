@@ -8,7 +8,12 @@
     <script src="predictions.controller.js"></script>
     <script src="examples.service.js"></script>
     <script src="examples.controller.js"></script>
-    <head>
+    <script src="loading.controller.js"></script>
+    <script src="loading.service.js"></script>
+
+    <script src="visual_effects/jquery-3.1.1.min.js"></script>
+    <script src="visual_effects/progress.js"></script>
+</head>
 <body ng-app="app" ng-controller="PredictionsController as pc">
 <div style="display: inline-table">
     <div>
@@ -61,5 +66,6 @@
         </tbody>
     </table>
 </div>
+<img id="progress" ng-controller="LoadingController as lc" src="loading.gif" style="position: absolute; height: 32px;" ng-show="lc.isLoading()"/>
 </body>
 </html>
