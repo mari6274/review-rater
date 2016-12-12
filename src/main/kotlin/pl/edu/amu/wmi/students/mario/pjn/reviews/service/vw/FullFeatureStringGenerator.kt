@@ -8,7 +8,13 @@ import pl.edu.amu.wmi.students.mario.pjn.reviews.domain.Review
  */
 @Service
 class FullFeatureStringGenerator(val lenFeatureStringGenerator: LenFeatureStringGenerator,
-                                 val topWordFeatureStringGenerator: TopWordFeatureStringGenerator) : (Review) -> String {
+                                 val topWordFeatureStringGenerator: TopWordFeatureStringGenerator,
+                                 val positiveWordCountFeatureStringGenerator: PositiveWordCountFeatureStringGenerator,
+                                 val negativeWordCountFeatureStringGenerator: NegativeWordCountFeatureStringGenerator) : (Review) -> String {
 
-    override fun invoke(review: Review): String = "${lenFeatureStringGenerator.invoke(review)}${topWordFeatureStringGenerator.invoke(review)}"
+    override fun invoke(review: Review): String =
+            lenFeatureStringGenerator.invoke(review) +
+            topWordFeatureStringGenerator.invoke(review) +
+            positiveWordCountFeatureStringGenerator.invoke(review) +
+            negativeWordCountFeatureStringGenerator.invoke(review)
 }

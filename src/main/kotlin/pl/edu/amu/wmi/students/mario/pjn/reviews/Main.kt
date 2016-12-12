@@ -4,8 +4,12 @@ import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.Bean
+import pl.edu.amu.wmi.students.mario.pjn.reviews.repository.NegativeWordRepository
+import pl.edu.amu.wmi.students.mario.pjn.reviews.repository.PositiveWordRepository
 import pl.edu.amu.wmi.students.mario.pjn.reviews.repository.ReviewRepository
 import pl.edu.amu.wmi.students.mario.pjn.reviews.service.FeatureGenerator
+import pl.edu.amu.wmi.students.mario.pjn.reviews.service.NegativeWordsInitializer
+import pl.edu.amu.wmi.students.mario.pjn.reviews.service.PositiveWordsInitializer
 import pl.edu.amu.wmi.students.mario.pjn.reviews.service.ReviewDataInitializer
 import pl.edu.amu.wmi.students.mario.pjn.reviews.service.vw.FullFeatureStringGenerator
 import pl.edu.amu.wmi.students.mario.pjn.reviews.service.writer.FileExamplesWriter
@@ -23,8 +27,12 @@ open class Application {
             reviewRepository: ReviewRepository,
             featureGenerator: FeatureGenerator,
             fullFeatureStringGenerator: FullFeatureStringGenerator,
-            fileExamplesWriter: FileExamplesWriter
+            fileExamplesWriter: FileExamplesWriter,
+            positiveWordsInitializer: PositiveWordsInitializer,
+            negativeWordsInitializer: NegativeWordsInitializer
     ) = CommandLineRunner {
+        positiveWordsInitializer.initialize()
+        negativeWordsInitializer.initialize()
         val args = it
         if (args.isNotEmpty()) {
             when (args[0]) {

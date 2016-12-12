@@ -16,7 +16,7 @@ class ReviewDataInitializer(val reviewDownloader: ReviewDownloader, val reviewRe
     val LOGGER : Logger = LoggerFactory.getLogger(ReviewDataInitializer::class.java)
 
     fun init() {
-        reviewDownloader.download(10, Consumer {
+        reviewDownloader.download(70, Consumer {
             reviewRepository.save(Review(it.reviewText ?: "", it.overallRating?.rating ?: 0))
             LOGGER.info("Saved review: {}", it.reviewText?.safeBeginning(80))
         })

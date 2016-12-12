@@ -12,7 +12,9 @@ class FeaturesStringGeneratorFactory(val applicationContext: ApplicationContext)
 
     val featuresMap = mapOf(
             Pair("len", LenFeatureStringGenerator::class.java),
-            Pair("topWord", TopWordFeatureStringGenerator::class.java))
+            Pair("topWord", TopWordFeatureStringGenerator::class.java),
+            Pair("posWordsCount", PositiveWordCountFeatureStringGenerator::class.java),
+            Pair("negWordsCount", NegativeWordCountFeatureStringGenerator::class.java))
 
     fun get(featuresParam: String): (Review) -> String {
 
