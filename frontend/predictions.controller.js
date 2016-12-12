@@ -1,7 +1,7 @@
 (function() {
-    angular.module('app').controller('PredictionsController', ['PredictionsService', PredictionsController]);
+    angular.module('app').controller('PredictionsController', ['PredictionsService', 'LoadingService', PredictionsController]);
 
-    function PredictionsController(PredictionsService) {
+    function PredictionsController(PredictionsService, LoadingService) {
         var vm = this;
         vm.predictions= "";
         vm.response= "";
@@ -9,12 +9,15 @@
         vm.calcColor = calcColor;
 
         function postPredictions() {
+            LoadingService.switchOn();
             PredictionsService.postPredictions(vm.predictions)
             .then(function successCallback(response) {
-                vm.response = response.data
+                vm.response = response.data;
             }, function errorCallback(response) {
-                vm.response = response.data
-            })
+                vm.response = response.data;
+            }).finally(function () {
+                LoadingService.switchOff();
+            });
         }
 
         function calcColor(diff) {
