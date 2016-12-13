@@ -20,7 +20,7 @@ class FeatureGenerator(
 
     fun generate() {
         reviewRepository.findAll().forEach {
-            val features = Features(topWordFinder.find(it.review) ?: "", it)
+            val features = Features(topWordFinder.find(it.review) ?: "")
             it.features = features
             featuresRepository.save(features)
             reviewRepository.save(it)

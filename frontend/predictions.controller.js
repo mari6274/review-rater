@@ -1,12 +1,13 @@
 (function() {
-    angular.module('app').controller('PredictionsController', ['PredictionsService', 'LoadingService', PredictionsController]);
+    angular.module('app').controller('PredictionsController', ['PredictionsService', 'LoadingService', 'ReviewsService', PredictionsController]);
 
-    function PredictionsController(PredictionsService, LoadingService) {
+    function PredictionsController(PredictionsService, LoadingService, ReviewsService) {
         var vm = this;
         vm.predictions= "";
         vm.response= "";
         vm.postPredictions = postPredictions;
         vm.calcColor = calcColor;
+        vm.getReview = getReview;
 
         function postPredictions() {
             LoadingService.switchOn();
@@ -31,6 +32,15 @@
             } else {
                 return "red";
             }
+        }
+        
+        function getReview(id) {
+            ReviewsService.getReview(id)
+                .then(function successCallback(response) {
+                    alert(response.data.review)
+                }, function errorCallback(response) {
+                    alert("Error");
+                });
         }
     }
 })();

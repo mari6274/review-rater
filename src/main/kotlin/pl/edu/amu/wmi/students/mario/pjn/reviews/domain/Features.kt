@@ -9,10 +9,7 @@ import javax.persistence.*
 @Table(name = "features")
 data class Features(
         var topWord : String,
-        @OneToOne var review : Review? = null,
         @Id @GeneratedValue(strategy = GenerationType.AUTO) var id : Long = 0
 ) {
     constructor() : this("")
-
-    fun length(): Int? = review?.review?.length
 }

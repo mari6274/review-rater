@@ -10,6 +10,7 @@
     <script src="examples.controller.js"></script>
     <script src="loading.controller.js"></script>
     <script src="loading.service.js"></script>
+    <script src="reviews.service.js"></script>
 
     <script src="visual_effects/jquery-3.1.1.min.js"></script>
     <script src="visual_effects/progress.js"></script>
@@ -59,7 +60,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="diff in pc.response.predictionExampleDiffs" ng-style="{'background-color': pc.calcColor(diff)}">
-            <td>{{ diff.reviewId }}</td>
+            <td ng-click="pc.getReview(diff.reviewId)">{{ diff.reviewId }}</td>
             <td>{{ diff.grade }}</td>
             <td>{{ diff.predictedGrade }}</td>
         </tr>
