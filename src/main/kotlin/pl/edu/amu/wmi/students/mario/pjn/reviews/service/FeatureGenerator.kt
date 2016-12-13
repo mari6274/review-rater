@@ -14,13 +14,16 @@ import pl.edu.amu.wmi.students.mario.pjn.reviews.repository.ReviewRepository
 class FeatureGenerator(
         val reviewRepository: ReviewRepository,
         val featuresRepository: FeaturesRepository,
-        val topWordFinder: TopWordFinder) {
+        val topWordFinder: TopWordFinder,
+        val bigramsFinder: BigramsFinder) {
 
     val LOGGER : Logger = LoggerFactory.getLogger(FeatureGenerator::class.java)
 
     fun generate() {
         reviewRepository.findAll().forEach {
-            val features = Features(topWordFinder.find(it.review) ?: "")
+            val features = Features(
+                    topWord = topWordFinder.find(it.review) ?: "",
+                    bigrams = bigramsFinder.find(it.review))
             it.features = features
             featuresRepository.save(features)
             reviewRepository.save(it)

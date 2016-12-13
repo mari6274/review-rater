@@ -11,7 +11,8 @@
             {key: "len", value: false},
             {key: "topWord", value: false},
             {key: "posWordsCount", value: false},
-            {key: "negWordsCount", value: false}
+            {key: "negWordsCount", value: false},
+            {key: "bigrams", value: false}
         ];
         vm.features = angular.copy(vm.learnFeatures);
 

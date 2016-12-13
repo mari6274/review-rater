@@ -14,7 +14,8 @@ class FeaturesStringGeneratorFactory(val applicationContext: ApplicationContext)
             Pair("len", LenFeatureStringGenerator::class.java),
             Pair("topWord", TopWordFeatureStringGenerator::class.java),
             Pair("posWordsCount", PositiveWordCountFeatureStringGenerator::class.java),
-            Pair("negWordsCount", NegativeWordCountFeatureStringGenerator::class.java))
+            Pair("negWordsCount", NegativeWordCountFeatureStringGenerator::class.java),
+            Pair("bigrams", BigramsFeatureStringGenerator::class.java))
 
     fun get(featuresParam: String): (Review) -> String {
 

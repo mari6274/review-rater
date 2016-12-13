@@ -10,11 +10,13 @@ import pl.edu.amu.wmi.students.mario.pjn.reviews.domain.Review
 class FullFeatureStringGenerator(val lenFeatureStringGenerator: LenFeatureStringGenerator,
                                  val topWordFeatureStringGenerator: TopWordFeatureStringGenerator,
                                  val positiveWordCountFeatureStringGenerator: PositiveWordCountFeatureStringGenerator,
-                                 val negativeWordCountFeatureStringGenerator: NegativeWordCountFeatureStringGenerator) : (Review) -> String {
+                                 val negativeWordCountFeatureStringGenerator: NegativeWordCountFeatureStringGenerator,
+                                 val bigramsFeatureStringGenerator: BigramsFeatureStringGenerator) : (Review) -> String {
 
     override fun invoke(review: Review): String =
             lenFeatureStringGenerator.invoke(review) +
-            topWordFeatureStringGenerator.invoke(review) +
-            positiveWordCountFeatureStringGenerator.invoke(review) +
-            negativeWordCountFeatureStringGenerator.invoke(review)
+                    topWordFeatureStringGenerator.invoke(review) +
+                    positiveWordCountFeatureStringGenerator.invoke(review) +
+                    negativeWordCountFeatureStringGenerator.invoke(review) +
+                    bigramsFeatureStringGenerator.invoke(review)
 }

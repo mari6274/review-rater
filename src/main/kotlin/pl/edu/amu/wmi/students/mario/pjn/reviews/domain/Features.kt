@@ -8,8 +8,9 @@ import javax.persistence.*
 @Entity
 @Table(name = "features")
 data class Features(
-        var topWord : String,
-        @Id @GeneratedValue(strategy = GenerationType.AUTO) var id : Long = 0
-) {
-    constructor() : this("")
-}
+        var topWord: String = "",
+        @ElementCollection
+        @CollectionTable(name = "bigrams")
+        var bigrams: List<String> = listOf(),
+        @Id @GeneratedValue(strategy = GenerationType.AUTO) var id: Long = 0
+)
